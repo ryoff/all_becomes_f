@@ -55,4 +55,31 @@ describe "#everything_became_f?" do
       it { is_expected.to eq result }
     end
   end
+
+  describe Time do
+    before { ENV['TZ'] = 'UTC' }
+    where(:time, :result) do
+      [
+        [Time.new(1970, 1, 1, 0, 0, 15), true],
+        [Time.new(1970, 1, 1, 0, 4, 15), true],
+        [Time.new(1970, 1, 1, 1, 8, 15), true],
+        [Time.new(1970, 1, 1, 18, 12, 15), true],
+        [Time.new(1970, 1, 13, 3, 16, 15), true],
+        [Time.new(1970, 7, 14, 4, 20, 15), true],
+        [Time.new(1978, 7, 4, 21, 24, 15), true],
+        [Time.new(2106, 2, 7, 6, 28, 15), true],
+        [Time.new(4147, 8, 20, 7, 32, 15), true],
+        [Time.new(36812, 2, 20, 0, 36, 15), true],
+        [Time.new(559444, 3, 8, 9, 40, 15), true],
+        [Time.new(1970, 1, 1, 0, 0, 0), false],
+        [Time.new(2015, 12, 24, 0, 0, 0), false]
+      ]
+    end
+
+    with_them do
+      subject { time.everything_became_f? }
+
+      it { is_expected.to eq result }
+    end
+  end
 end
