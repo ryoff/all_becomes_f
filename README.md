@@ -23,7 +23,7 @@ Or install it yourself as:
 
 integer
 
-```
+````ruby
 1.everything_became_f? # => false
 14.everything_became_f? # => false
 15.everything_became_f? # => true
@@ -34,7 +34,7 @@ integer
 
 String
 
-```
+````ruby
 'f'.everything_became_f? # => true
 'fF'.everything_became_f? # => true
 'FF'.everything_became_f? # => true
@@ -44,7 +44,7 @@ String
 
 Time
 
-```
+````ruby
 ENV['TZ'] = 'UTC'
 Time.new(1970, 1, 1, 0, 0, 15).everything_became_f? # => true
 Time.new(1978, 7, 4, 21, 24, 15).everything_became_f? # => true
