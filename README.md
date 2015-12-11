@@ -21,7 +21,35 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+integer
+
+```
+1.everything_became_f? # => false
+14.everything_became_f? # => false
+15.everything_became_f? # => true
+16.everything_became_f? # => false
+255.everything_became_f? # => true
+65535.everything_became_f? # => true
+```
+
+String
+
+```
+'f'.everything_became_f? # => true
+'fF'.everything_became_f? # => true
+'FF'.everything_became_f? # => true
+'ffffffffffffffffffffffffffffffffffffffffffffffffff'.everything_became_f? # => true
+'FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF'.everything_became_f? # => true
+```
+
+Time
+
+```
+ENV['TZ'] = 'UTC'
+Time.new(1970, 1, 1, 0, 0, 15).everything_became_f? # => true
+Time.new(1978, 7, 4, 21, 24, 15).everything_became_f? # => true
+Time.new(2106, 2, 7, 6, 28, 15).everything_became_f? # => true
+```
 
 ## Development
 
