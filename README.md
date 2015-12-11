@@ -1,6 +1,7 @@
 # EverythingBecomesF
 
 [see also]
+https://ja.wikipedia.org/wiki/すべてがFになる
 https://en.wikipedia.org/wiki/Subete_ga_F_ni_Naru
 
 ## Installation
