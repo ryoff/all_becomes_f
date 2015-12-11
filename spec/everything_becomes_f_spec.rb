@@ -57,7 +57,8 @@ describe "#everything_became_f?" do
   end
 
   describe Time do
-    before { ENV['TZ'] = 'UTC' }
+    ENV['TZ'] = 'UTC'
+
     where(:time, :result) do
       [
         [Time.new(1970, 1, 1, 0, 0, 15), true],
