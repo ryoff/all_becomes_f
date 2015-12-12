@@ -10,7 +10,7 @@ https://en.wikipedia.org/wiki/Subete_ga_F_ni_Naru
 
 `すべてがfになる everything_becomes_f method` と
 
-`すべてがfになったか、を返却する everything_became_f? method`
+`すべてがfになったか、を判定する everything_became_f? method`
 
 だけを提供するネタgemです。
 
