@@ -6,6 +6,14 @@ https://ja.wikipedia.org/wiki/すべてがFになる
 
 https://en.wikipedia.org/wiki/Subete_ga_F_ni_Naru
 
+このgemは、ゲーム化・漫画化・アニメ化・ドラマ化などもされた森博嗣のミステリー小説【すべてがFになる】に触発されて、
+
+`すべてがfになる everything_becomes_f method` と
+
+`すべてがfになったか、を返却する everything_became_f? method`
+
+だけを提供するネタgemです。
+
 ## Installation
 
 Add this line to your application's Gemfile:
@@ -23,6 +31,7 @@ Or install it yourself as:
     $ gem install everything_becomes_f
 
 ## Usage
+### everything_became_f?
 
 integer
 
@@ -52,6 +61,44 @@ ENV['TZ'] = 'UTC'
 Time.new(1970, 1, 1, 0, 0, 15).everything_became_f? # => true
 Time.new(1978, 7, 4, 21, 24, 15).everything_became_f? # => true
 Time.new(2106, 2, 7, 6, 28, 15).everything_became_f? # => true
+```
+
+### everything_becomes_f
+
+Integer
+
+````ruby
+0.everything_becomes_f # => 15
+1.everything_becomes_f # => 15
+10.everything_becomes_f # => 15
+15.everything_becomes_f # => 15
+16.everything_becomes_f # => 255
+254.everything_becomes_f # => 255
+255.everything_becomes_f # => 255
+256.everything_becomes_f # => 4095
+65534.everything_becomes_f # => 65535
+65535.everything_becomes_f # => 65535]
+```
+
+String
+
+````ruby
+'a'.everything_becomes_f # => 'f'
+'af'.everything_becomes_f # => 'ff'
+'fa'.everything_becomes_f # => 'ff'
+'ffffffffffffffffffffffffffffffffffffffffffffffffffe'.everything_becomes_f # => 'fffffffffffffffffffffffffffffffffffffffffffffffffff'
+'あいうえお'.everything_becomes_f # => 'fffff']
+```
+
+Time
+
+````ruby
+Time.new(1970, 1, 1, 0, 0, 14).everything_becomes_f # => Time.new(1970, 1, 1, 0, 0, 15)
+Time.new(1970, 1, 1, 0, 0, 15).everything_becomes_f # => Time.new(1970, 1, 1, 0, 0, 15)
+Time.new(1970, 1, 1, 0, 0, 16).everything_becomes_f # => Time.new(1970, 1, 1, 0, 4, 15)
+Time.new(1978, 7, 4, 21, 24, 14).everything_becomes_f # => Time.new(1978, 7, 4, 21, 24, 15)
+Time.new(1978, 7, 4, 21, 24, 15).everything_becomes_f # => Time.new(1978, 7, 4, 21, 24, 15)
+Time.new(1978, 7, 4, 21, 24, 16).everything_becomes_f # => Time.new(2106, 2, 7, 6, 28, 15)]
 ```
 
 ## Development
