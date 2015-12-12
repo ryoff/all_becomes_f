@@ -3,7 +3,11 @@ class String
     downcase.squeeze == 'f'
   end
 
+  def everything_becomes_f
+    'f' * length
+  end
+
   def everything_becomes_f!
-    self.replace('f' * length)
+    self.replace(everything_becomes_f)
   end
 end

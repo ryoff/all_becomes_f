@@ -86,7 +86,31 @@ describe "EverythingBecomesF" do
     end
   end
 
-  describe "#everything_becomes_f!" do
+  describe "#everything_becomes_f" do
+    describe Integer do
+      where(:integer, :result) do
+        [
+          [0, 15],
+          [1, 15],
+          [10, 15],
+          [15, 15],
+          [16, 255],
+          [254, 255],
+          [255, 255],
+          [256, 4095],
+          [65534, 65535],
+          [65535, 65535]
+        ]
+      end
+
+      with_them do
+        subject { integer.everything_becomes_f }
+
+        it { is_expected.to eq result }
+        it { expect(subject.everything_became_f?).to eq true }
+      end
+    end
+
     describe String do
       where(:string, :result) do
         [
@@ -94,17 +118,37 @@ describe "EverythingBecomesF" do
           ['af', 'ff'],
           ['fa', 'ff'],
           ['ffffffffffffffffffffffffffffffffffffffffffffffffffe', 'fffffffffffffffffffffffffffffffffffffffffffffffffff'],
-          ['あいうえお', 'fffff'],
+          ['あいうえお', 'fffff']
         ]
       end
 
       with_them do
-        subject do
-          string.everything_becomes_f!
-          string
-        end
+        subject { string.everything_becomes_f }
 
         it { is_expected.to eq result }
+        it { expect(subject.everything_became_f?).to eq true }
+      end
+    end
+
+    describe Time do
+      ENV['TZ'] = 'UTC'
+
+      where(:time, :result) do
+        [
+          [Time.new(1970, 1, 1, 0, 0, 14), Time.new(1970, 1, 1, 0, 0, 15)],
+          [Time.new(1970, 1, 1, 0, 0, 15), Time.new(1970, 1, 1, 0, 0, 15)],
+          [Time.new(1970, 1, 1, 0, 0, 16), Time.new(1970, 1, 1, 0, 4, 15)],
+          [Time.new(1978, 7, 4, 21, 24, 14), Time.new(1978, 7, 4, 21, 24, 15)],
+          [Time.new(1978, 7, 4, 21, 24, 15), Time.new(1978, 7, 4, 21, 24, 15)],
+          [Time.new(1978, 7, 4, 21, 24, 16), Time.new(2106, 2, 7, 6, 28, 15)]
+        ]
+      end
+
+      with_them do
+        subject { time.everything_becomes_f }
+
+        it { is_expected.to eq result }
+        it { expect(subject.everything_became_f?).to eq true }
       end
     end
   end
