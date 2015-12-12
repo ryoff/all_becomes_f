@@ -1,5 +1,5 @@
 class Time
   def everything_became_f?
-    to_i.to_s(16).squeeze == 'f'
+    to_i.everything_became_f?
   end
 end
