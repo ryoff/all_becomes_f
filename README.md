@@ -6,9 +6,9 @@ https://en.wikipedia.org/wiki/Subete_ga_F_ni_Naru
 
 このgemは、ゲーム化・漫画化・アニメ化・ドラマ化などもされた森博嗣のミステリー小説【すべてがFになる】に触発されて、
 
-`すべてがfになる everything_becomes_f method` と
+すべてがfになる `everything_becomes_f` method と
 
-`すべてがfになったか、を判定する everything_became_f? method`
+すべてがfになったか、を判定する `everything_became_f?` method
 
 だけを提供するネタgemです。
 
