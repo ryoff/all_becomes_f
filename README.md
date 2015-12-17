@@ -39,6 +39,10 @@ integer
 15.everything_became_f? # => true
 16.everything_became_f? # => false
 255.everything_became_f? # => true
+
+65534.to_s(16) # => "fffe"
+65534.everything_became_f? # => false
+65535.to_s(16) # => "ffff"
 65535.everything_became_f? # => true
 ```
 
@@ -58,6 +62,10 @@ Time
 ENV['TZ'] = 'UTC'
 Time.new(1970, 1, 1, 0, 0, 15).everything_became_f? # => true
 Time.new(1978, 7, 4, 21, 24, 15).everything_became_f? # => true
+
+Time.new(2106, 2, 7, 6, 28, 14).to_i.to_s(16) # => "fffffffe"
+Time.new(2106, 2, 7, 6, 28, 14).everything_became_f? # => false
+Time.new(2106, 2, 7, 6, 28, 15).to_i.to_s(16) # => "ffffffff"
 Time.new(2106, 2, 7, 6, 28, 15).everything_became_f? # => true
 ```
 
@@ -75,7 +83,7 @@ Integer
 255.everything_becomes_f # => 255
 256.everything_becomes_f # => 4095
 65534.everything_becomes_f # => 65535
-65535.everything_becomes_f # => 65535]
+65535.everything_becomes_f # => 65535
 ```
 
 String
@@ -85,7 +93,7 @@ String
 'af'.everything_becomes_f # => 'ff'
 'fa'.everything_becomes_f # => 'ff'
 'ffffffffffffffffffffffffffffffffffffffffffffffffffe'.everything_becomes_f # => 'fffffffffffffffffffffffffffffffffffffffffffffffffff'
-'あいうえお'.everything_becomes_f # => 'fffff']
+'あいうえお'.everything_becomes_f # => 'fffff'
 ```
 
 Time
@@ -96,7 +104,7 @@ Time.new(1970, 1, 1, 0, 0, 15).everything_becomes_f # => Time.new(1970, 1, 1, 0,
 Time.new(1970, 1, 1, 0, 0, 16).everything_becomes_f # => Time.new(1970, 1, 1, 0, 4, 15)
 Time.new(1978, 7, 4, 21, 24, 14).everything_becomes_f # => Time.new(1978, 7, 4, 21, 24, 15)
 Time.new(1978, 7, 4, 21, 24, 15).everything_becomes_f # => Time.new(1978, 7, 4, 21, 24, 15)
-Time.new(1978, 7, 4, 21, 24, 16).everything_becomes_f # => Time.new(2106, 2, 7, 6, 28, 15)]
+Time.new(1978, 7, 4, 21, 24, 16).everything_becomes_f # => Time.new(2106, 2, 7, 6, 28, 15)
 ```
 
 ## Development
